@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --body-bg: #f9f9f9;
+        --main-color: rgb(0, 149, 255);
+        --link-hover: #333;
+        --button-hover: rgb(7, 116, 194);
+        --button-border: rgb(0, 149, 255);
+        --white-text-color: white;
+        --heading: #333;
+        --main-title: #555;
+        --main-para: #666;
+        --body-cal: calc(100% -);
+    }
+
+    body {
+        width: 100%;
+        height: 100dvh;
+        background: var(--body-bg);
+    }
+
+    .wrapper {
+        max-width: 1200px;
+        height: 4rem;
+        margin: auto;
+
+    }
+
+    .navbar {
+        padding: 20px 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .logo {
+        letter-spacing: 2px;
+        font-size: 1.9rem;
+        color: var(--main-color);
+    }
+
+    .links ul li {
+        list-style-type: none;
+        display: inline;
+        padding: 0 1.5rem;
+    }
+
+    .links a {
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: var(--main-color);
+    }
+
+    .links a:hover {
+        color: var(--link-hover);
+    }
+
+    .hero-container {
+        width: 100%;
+        height: 80vh;
+        margin: auto;
+        max-width: 1200px;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .content {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .hero-content {
+        flex: 1;
+        padding: .5rem;
+    }
+
+    .hero-content h1 {
+        font-family: 'Nunito', sans-serif;
+        font-size: 3rem;
+        color: var(--heading);
+    }
+
+    .hero-content .main-title {
+        color: var(--main-title);
+        font-family: 'Poppins', sans-serif;
+        margin-top: 1rem;
+        font-size: 2.5rem;
+    }
+
+    .hero-content .main-para {
+        line-height: 2rem;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 1.2rem;
+        font-size: 1.2rem;
+        color: var(--main-para);
+    }
+
+    .hero-content .cta-button {
+        color: var(--white-text-color);
+        margin-top: 2rem;
+        font-size: 20px;
+        padding: 8px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid var(--button-border);
+        background-color: var(--main-color);
+        transition: background-color .4s ease;
+    }
+
+    .hero-content .cta-button:hover {
+        background-color: var(--button-hover);
+    }
+
+    .hero-image {
+        padding: .5rem;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    @media(max-width:768px) {
+        .hero-container {
+           margin-top: 4rem;
+        }
+        .links ul li {
+            padding: 0 .5rem;
+        }
+
+        .content {
+            margin-top: 5.5rem;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-image {
+            margin-top: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-content .main-title {
+            font-size: 2rem;
+            margin-top: 1rem;
+
+        }
+
+        .hero-content .main-para {
+            font-size: 1rem;
+        }
+
+        .hero-content .cta-button {
+            font-size: 15px;
+        }
+    }
+
+    @media(max-width:336px) {
+
+        .navbar {
+            padding: .5rem;
+            height: 2.5rem;
+
+        }
+
+        .content {
+            margin-top: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .hero-content .main-title {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+
+        }
+
+        .hero-content .main-para {
+            font-size: 1rem;
+        }
+
+        .hero-content .cta-button {
+            font-size: 15px;
+        }
+    }
+
+    @media(max-width:290px){
+        ul {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <span>Ninja</span>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><a href="upload.html">Upload</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <main>
+        <div class="hero-container">
+            <div class="content flex">
+                <div class="hero-content">
+                    <h1>Welcome to Your</h1>
+                    <p class="main-title">Creative Future</p>
+                    <p class="main-para">Everything you need to take your ideas to the next level is right here. Get
+                        inspired, collaborate, and create!</p>
+                    <button class="cta-button">Let's Begin</button>
+                </div>
+                <div class="hero-image">
+                    <img src="./assets/hero.jpg" alt="hero png">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

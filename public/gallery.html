@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Viewer</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"rel="stylesheet">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --body-bg:color:rgb(0, 149, 255);
+        --card-bg:white;
+        --para-bg:#333;
+        --main-color:rgb(0, 149, 255);
+        --button-hover:rgb(7, 116, 194);
+        --white-text-color:white;
+    }
+
+    body {
+        width: 100%;
+        height: 100dvh;
+        background: var(--body-bg);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
+    
+    #gallery-container{
+        padding: .5rem;
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%),1fr));
+    }
+
+    h1 {
+        font-size: clamp(2rem, calc(1.7vw + 1rem), 3rem);
+        font-size:min(2rem,calc(1.2vw + 1rem),4rem);
+        text-align: center;
+        margin: 1rem 0;
+        color: var(--main-color);
+        letter-spacing: 2px;
+
+    }
+
+    .para {
+        background-color:var(--para-bg);
+        width: 100%;
+        height: 2rem;
+        max-height: 3rem;
+    }
+
+    p {
+        color:var(--white-text-color);
+        line-height: 1.6rem;
+        max-width: 5rem;
+    }
+
+    header {
+        max-width: 1170px;
+        margin: auto;
+    }
+    
+    #wrapper {
+        max-width: 1170px;
+        margin: auto;
+    }
+
+    #navbar {
+        height: 3.5rem;
+        padding: 2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .gallery_style {
+        background-color:var(--card-bg);
+        padding: .5rem;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease, transform 0.3s ease
+    }
+
+    .gallery_style:hover {
+        
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),  0 14px 40px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+    }
+
+    .gallery_style p {
+        line-height: .2rem;
+        font-size: 14px;
+        padding:1rem .5rem;
+    }
+
+    .home-button {
+        width: 100%;
+        height: 2.5rem;
+        margin-top: .8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .home-button button {
+        letter-spacing: 2px;
+        background:var(--white-text-color);
+        background:var(--main-color);
+        padding: 8px 22px;
+        cursor: pointer;
+        border-radius: 4px;
+        border: transparent;
+        font-size: 17px;
+        font-family: 'Poppins', sans-serif;
+        transition: background-color .4s ease;
+    }
+    
+    .home-button a {
+        text-decoration: none;
+        color:var(--white-text-color);
+
+    }
+
+    .home-button button:hover {
+        background-color:var(--button-hover);
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <h1>Trending posts</h1>
+        <div id ="gallery-container"></div>
+        <div class="home-button">
+            <button><a href="index.html">Home</a></button>
+        </div>
+    </div>
+    <script>
+        const fetchGallery = async () => {
+            try {
+                const response = await fetch('/gallery');
+                const files = await response.json();
+
+                const container = document.getElementById('gallery-container');
+                container.innerHTML = '';
+
+                files.forEach(file => {
+                    const filepath = `/upload/${file}`;
+
+                    const gallery_Item = document.createElement('div');
+                    gallery_Item.classList.add('gallery_style');
+
+                    if (file.match(/\.(jpeg|jpg|png|gif)$/)){
+                        gallery_Item.innerHTML = `
+                          <img src="${filepath}" alt="${file}">
+                          <div class="para">
+                            <p>${file}</p>
+                          </div>
+                        `
+                    } else if (file.match(/\.(mp4|mov|avi|mkv)$/)) {
+                        gallery_Item.innerHTML = `
+                        <video controls>
+                            <source src="${filepath}" type="video/${file.split(".").pop()}">
+                        </video>
+                        `
+                    }
+                    container.appendChild(gallery_Item);
+                });
+
+            } catch (error) {
+                console.log(error.message)
+                alert('failed to fetch Gallery ⚠');
+            }
+        }
+        fetchGallery();
+        document.addEventListener('DOMContentLoaded', fetchGallery);
+    </script>
+</body>
+</html>
+
